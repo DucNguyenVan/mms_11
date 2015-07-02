@@ -26,6 +26,17 @@ describe Admin::ProjectsController, type: :controller do
       it "should valid when returned json equal project infor after save" do
         expect(subject.body).to eql assigns(:project).to_json
       end
+
+    context "pagination" do
+      it do
+        50.times {FactoryGirl.create(:project)}
+        @projects = Project.all
+        byebug
+        # render
+        expect(page).to have_css('div.containers')
+      end
+
+    end
     end
 
     context "render members via AJAX" do
