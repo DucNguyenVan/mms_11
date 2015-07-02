@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Admin::SkillsController, type: :controller do
+describe Admin::SkillsController do
   describe "GET #index" do
     before {get :index}
     it {is_expected.to render_template :index}
