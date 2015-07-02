@@ -1,5 +1,4 @@
 require "rails_helper"
-require 'byebug'
 
 describe Admin::ProjectsController, type: :controller do
   describe "GET index" do
@@ -27,6 +26,16 @@ describe Admin::ProjectsController, type: :controller do
         expect(subject.body).to eql assigns(:project).to_json
       end
     end
+
+    context "pagination" do
+      it do
+        50.times {FactoryGirl.create(:project)}
+        @projects = Project.all
+        expect(page).to have_css("div.containers")
+      end
+
+    end
+  end
 
     context "render members via AJAX" do
       before do
